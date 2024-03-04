@@ -46,6 +46,20 @@ ___
 
 Visit the [official documentation](https://espanso.org/docs/).
 
+## Provisional Wayland support
+
+This branch has provisional support for Wayland, albeit **only under Fedora 36/37 using Gnome**.
+
+Please look at the documentation for details. Application specific filters
+(filter_title, filter_class, filter_exec) currently only work und Wayland with Gnome
+version 41. In addition, a Gnome shell extension
+(https://extensions.gnome.org/extension/4974/window-calls-extended/)
+is required! Without this extension, espanso has no access to active window information.
+
+* Compile espanso with `cargo make --profile release --env NO_X11=true build-binary`
+* User must be member of group `input`
+* Espanso must be given capability (SELinux) to access /dev/input. So install with `sudo cp ~/src/espanso/target/release/espanso /usr/local/bin ; sudo setcap "cap_dac_override+p" $(which espanso)`
+
 ## Support
 
 If you need some help to setup espanso, want to ask a question or simply get involved
